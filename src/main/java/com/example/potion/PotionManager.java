@@ -206,4 +206,25 @@ public class PotionManager implements ClientModInitializer {
             StatusEffect targetEffect
     ) {
 
-        for (int
+        for (int i = 0; i < inventory.size(); i++) {
+
+            ItemStack stack = inventory.getStack(i);
+
+            if (!(stack.getItem() instanceof PotionItem)) {
+                continue;
+            }
+
+            boolean hasEffect = PotionUtil.getPotionEffects(stack)
+                    .stream()
+                    .anyMatch(effect ->
+                            effect.getEffectType() == targetEffect
+                    );
+
+            if (hasEffect) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+        }
