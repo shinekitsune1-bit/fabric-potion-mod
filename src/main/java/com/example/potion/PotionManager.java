@@ -7,13 +7,15 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
-import net.minecraft.potion.PotionUtil;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import org.lwjgl.glfw.GLFW;
@@ -136,7 +138,7 @@ public class PotionManager implements ClientModInitializer {
     private boolean applyPotionEffect(
             ClientPlayerEntity player,
             Inventory inventory,
-            StatusEffect targetEffect
+            RegistryEntry<StatusEffect> targetEffect
     ) {
 
         long currentTime = System.currentTimeMillis();
@@ -203,7 +205,7 @@ public class PotionManager implements ClientModInitializer {
 
     private int findPotionSlot(
             Inventory inventory,
-            StatusEffect targetEffect
+            RegistryEntry<StatusEffect> targetEffect
     ) {
 
         for (int i = 0; i < inventory.size(); i++) {
@@ -214,11 +216,21 @@ public class PotionManager implements ClientModInitializer {
                 continue;
             }
 
-            boolean hasEffect = PotionUtil.getPotionEffects(stack)
-                    .stream()
-                    .anyMatch(effect ->
-                            effect.getEffectType() == targetEffect
-                    );
+            PotionContentsComponent contents =
+                    stack.get(DataComponentTypes.POTION_CONTENTS);
+
+            if (contents == null) {
+                continue;
+            }
+
+            boolean hasEffect = false;
+
+            for (StatusEffectInstance effect : contents.getEffects()) {
+                if (effect.getEffectType().equals(targetEffect)) {
+                    hasEffect = true;
+                    break;
+                }
+            }
 
             if (hasEffect) {
                 return i;
@@ -227,4 +239,4 @@ public class PotionManager implements ClientModInitializer {
 
         return -1;
     }
-        }
+                                       }
