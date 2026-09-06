@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "potion-mod",
+  "version": "${version}",
+  "name": "Potion Mod",
+  "description": "Automatic splash-potion management for Minecraft",
+  "authors": [
+    "You"
+  ],
+  "contact": {
+    "sources": "https://github.com/shinekitsune1-bit/fabric-potion-mod"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.example.PotionModClient"
+    ]
+  },
+  "mixins": [
+    "potion-mod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "fabric-api": "*",
+    "minecraft": "1.21.8"
+  }
+}
