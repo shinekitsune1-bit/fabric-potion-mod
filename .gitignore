@@ -1,0 +1,29 @@
+# gradle
+.gradle/
+build/
+out/
+classes/
+
+# idea
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# vscode
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+.c9/
+*.launch
+.DS_Store
+thumb.db
+
+# maven
+target/
+
+# Loom files
+.loom-cache/
+run/
