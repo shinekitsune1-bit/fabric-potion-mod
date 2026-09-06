@@ -11,6 +11,7 @@
     "sources": "https://github.com/shinekitsune1-bit/fabric-potion-mod"
   },
   "license": "MIT",
+  "icon": "assets/potion-mod/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
