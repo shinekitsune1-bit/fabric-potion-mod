@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom'
+	id 'fabric-loom' version '1.10.1'
 	id 'maven-publish'
 }
 
@@ -28,11 +28,4 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
-	from("LICENSE") {
-		rename { "${it}_${project.archives_base_name}"}
-	}
-}
-
-publishingConfig = {
-	dataDir = file("src/main/resources")
-}
+	f
