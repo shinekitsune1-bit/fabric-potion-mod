@@ -155,7 +155,7 @@ public class PotionManager implements ClientModInitializer {
         }
 
         // Save currently selected hotbar slot
-        int originalSlot = inventory.selectedSlot;
+        int originalSlot = inventory.getSelectedSlot();
 
         // Move potion to slot 8 if necessary
         if (potionSlot != POTION_SLOT) {
@@ -171,7 +171,7 @@ public class PotionManager implements ClientModInitializer {
         }
 
         // Select slot 8
-        inventory.selectedSlot = POTION_SLOT;
+        inventory.setSelectedSlot(POTION_SLOT);
 
         // Throw potion
         float originalPitch = player.getPitch();
@@ -196,7 +196,7 @@ public class PotionManager implements ClientModInitializer {
         player.setPitch(originalPitch);
 
         // Restore original selected slot
-        inventory.selectedSlot = originalSlot;
+        inventory.setSelectedSlot(originalSlot);
 
         lastPotionThrowTime = currentTime;
 
