@@ -12,7 +12,7 @@ import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -78,7 +78,7 @@ public class PotionManager implements ClientModInitializer {
 
     private void managePotions(ClientPlayerEntity player) {
 
-        Inventory inventory = player.getInventory();
+        PlayerInventory inventory = player.getInventory();
 
         StatusEffectInstance strength =
                 player.getStatusEffect(StatusEffects.STRENGTH);
@@ -137,7 +137,7 @@ public class PotionManager implements ClientModInitializer {
 
     private boolean applyPotionEffect(
             ClientPlayerEntity player,
-            Inventory inventory,
+            PlayerInventory inventory,
             RegistryEntry<StatusEffect> targetEffect
     ) {
 
@@ -204,7 +204,7 @@ public class PotionManager implements ClientModInitializer {
     }
 
     private int findPotionSlot(
-            Inventory inventory,
+            PlayerInventory inventory,
             RegistryEntry<StatusEffect> targetEffect
     ) {
 
@@ -239,4 +239,4 @@ public class PotionManager implements ClientModInitializer {
 
         return -1;
     }
-                                       }
+                }
