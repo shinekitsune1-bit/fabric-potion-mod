@@ -32,7 +32,3 @@ jar {
 		rename { "${it}_${project.archives_base_name}"}
 	}
 }
-
-publishingConfig = {
-	dataDir = file("src/main/resources")
-}
