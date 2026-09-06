@@ -28,4 +28,11 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
-	f
+	from("LICENSE") {
+		rename { "${it}_${project.archives_base_name}"}
+	}
+}
+
+publishingConfig = {
+	dataDir = file("src/main/resources")
+}
